@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}  
+html, body {
+  height: 100%;
+  width: 100%;
+}  
+
+/* Css de page d'accueil */ 
+/* ***************** */ 
+/* ***************** */ 
+  #container {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  height: 100vh;
+  width: 100vw;
+  
+}
+   
+
+
+#left {
+  background-color: rgb(255, 255, 255);
+
+  grid-row-start: 3;
+  grid-row-end: 10;
+  grid-column-start: 1;
+  grid-column-end: 7;
+display: flex;
+flex-direction: column;
+gap: 30px;
+  margin: 60px;
+  margin-left: 110px;
+}
+
+#left h1 {
+ font-size: 150px;
+ font-family: 'Poppins', sans-serif;
+}
+
+#left p {
+  font-size: 30px;
+ }
+
+ #play {
+  font-size: 46px;
+  width: 210px;
+  height: 90px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  border: 7px;
+  border-color: black;
+ }
+#right {
+  background-color: rgb(255, 255, 255);
+
+  grid-row-start: 1;
+  grid-row-end: 9;
+  grid-column-start: 7;
+  grid-column-end: 11;
+}
+
+#footer {
+
+  grid-row-start: 10;
+  grid-row-end: 11;
+  grid-column-start: 1;
+  grid-column-end: 11;
+}
+
+#footer h2 {
+  display: flex; 
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#right {
+ width: 100px;
+ height: 500px;
+
+}
+
+/* Css de page play  */ 
+/* ***************** */
+/* ***************** */
+.containerplay {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  height: 100vh;
+  width: 100vw;
+
+}
+
+#head {
+  background-color: rgb(255, 255, 255);
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end:11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+#head h1 {
+  font-size: 100px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#image {
+  background-color: rgb(255, 255, 255);
+ grid-row-start: 2;
+  grid-row-end: 10;
+  grid-column-start: 1;
+  grid-column-end: 5;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+}
+
+#mot {
+  background-color: rgb(43, 13, 211);
+  grid-row-start: 2;
+  grid-row-end: 10;
+  grid-column-start: 5;
+  grid-column-end: 11;
+  display: flex;
+  flex-direction: row;
+}
+
+#tiret {
+  display: flex;
+  flex-direction: row;
+  background-color: aqua;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+  margin: 20px;
+}
+
+.lettre {
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+
+}
