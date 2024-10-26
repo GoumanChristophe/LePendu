@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
@@ -53,6 +54,7 @@ body {
   border: 7px;
   border-color: black;
 }
+
 #right {
   background-color: rgb(255, 255, 255);
 
@@ -101,6 +103,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 #head h1 {
   font-size: 100px;
   font-family: "Poppins", sans-serif;
@@ -116,6 +119,7 @@ body {
   flex-direction: row;
   justify-content: center;
 }
+
 /* Div Mots Recherché */
 /* ***************** */
 #mot {
@@ -144,6 +148,7 @@ body {
   height: 50%;
   margin-top: -100px;
 }
+
 /*   Span mot reccherché  */
 /* ***************** */
 .lettres {
@@ -187,6 +192,7 @@ body {
   border-radius: 20px;
   margin-top: 20px;
 }
+
 .del {
   /*  Disposition  */
   display: flex;
@@ -226,4 +232,56 @@ body {
   border-radius: 20px 20px 20px 20px;
   margin-top: -33px;
 
+}
+
+/*     div Bravo     */
+/* ***************** */
+
+#overlay {
+  /*display: flex;*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+}
+
+#popup {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 594px;
+  height: 284px;
+  padding-bottom: 10px;
+  top: 30%;
+  left: 35%;
+  border-radius: 20px 20px 20px 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+#text{
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  padding: 40px;
+  margin-left: 10px;
+}
+
+#title{
+  font-size: 50px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+
+#replay{
+  width: 37%;
+  height: 19%;
+  border-radius: 7px;
+  border-color: aliceblue;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  background-color: black;
+  color: rgb(255, 255, 255);
 }

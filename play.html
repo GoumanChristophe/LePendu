@@ -17,16 +17,22 @@
         </header>
 
         <div id="image">
-            <img src="./img/phase0.png" alt="phase" class="src">
+            <img src="./img/phase0.png" alt="phase" id="img">
         </div>
 
         <div id="mot">
             <div id="tiret" class="tiret">
             </div>
             <div class="wrong">
-                <div class="del" id="fas fa-coffee">X</div>
-                <div id="wrongWord">A, B, C, D, F, E, G</div>
+                <div class="del" id="croix" style="visibility: hidden">X</div>
+                <div id="wrongWord" style="visibility: hidden;"></div>
             </div>
+        </div>
+        <div id="overlay" style="visibility: hidden"></div>
+        <div id="popup" style="visibility: hidden">
+            <h1 id="title">TEST</h1>
+            <p id="text"></p>
+            <button type="button" id="replay">Rejouer</button>
         </div>
 
        
