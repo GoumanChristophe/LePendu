@@ -1,27 +1,53 @@
-const input = document.querySelector('#mot')
+let searchWord;
 
-let searchWord = [];
 
-const word = fetch("https://trouve-mot.fr/api/random/1")
+async function getName(){
+return fetch("https://trouve-mot.fr/api/random/1")
     .then((response) => response.json())
-    .then((words) => console.log(words))
+    .then((words) => {
+        //console.log(words);
+       
+         let worda = words[0].name.toUpperCase();
+        searchWord = worda.split('');   
+        
+            
+        
+        //console.log(word)
+        console.log( searchWord)
+    });
+}
 
-console.log(word);
-word = word.split('');
-searchWord.push(word);
 
-console.log(searchWord);
 
-/*for (i = 0; i < word.length; i++) {
+async function getSearch () {
 
-    word = word[i];
-    console.log(word)
-    console.log("insertion")
+     getName().then(() => {
+    //console.log(searchWord)
 
-    const newMessage = ` 
-    <span class="lettre" id="L${i}></span>
-    <span id=${i}>_</span>
-    `;
+    for (let i = 0; i < searchWord.length; i++) {
+        //console.log(searchWord)
+        //console.log('searchWord:', searchWord); // Affiche la structure de searchWord
+        let word = searchWord[i];
+      
+       //console.log(word[i])
+        
 
-    document.querySelector('#tiret').innerHTML += newMessage;
-} */ 
+        const newMessage = ` 
+        <div class="lettres">
+        <span class="lettre" id="${word}" style="display: flex;">${word}</span>
+        <span class="${word}" id="lettre"><img src="./img/trait.png" alt="trait" class="trait"></span>
+        </div>
+        `;
+        let newLetter = document.querySelector('#tiret'); 
+        let hide = document.querySelector('.lettre');
+        //console.log('newMessage:', newMessage);
+        
+        
+        
+            newLetter.innerHTML += newMessage;
+      
+    }  
+});
+}
+
+getSearch()
