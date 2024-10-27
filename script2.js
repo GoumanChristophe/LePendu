@@ -2,9 +2,19 @@
 let searchWord;
 let hide = document.querySelector('.lettre');
 let img = document.querySelector('#img');
-let regex = /[^a-zA-Z0-9\s]/g;
+
+// Regex pour vérifier les caractères non autorisés
+let regex = /[^a-zA-Z0-9\s]/;
+let regex1 = /[^a-zA-Z]/;
+
+// Liste des touches spéciales à ignorer
+const specialKeys = ['Shift', 'Control', 'Alt', 'Meta', 'Tab', 'Escape', 'Enter', 'Backspace', 'Delete', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'CapsLock'];
+
+// Déclaration des tableaux pour stocker les lettres incorrectes et correctes
 let wrong = [];
 let compare = [];
+
+// Variables pour le calcul du score
 let i = 0;
 let maxScore = 100;
 let correctAttempts = 0;
@@ -29,7 +39,7 @@ async function getName() {
         .then((words) => {
             // Extraction du mot aléatoire et conversion en majuscules
             let worda = words[0].name.toUpperCase();
-            console.log(worda);
+            //console.log(worda);
 
             // Division du mot en un tableau de lettres
             searchWord = worda.split('');
@@ -38,7 +48,7 @@ async function getName() {
             }
 
             // Affichage du tableau de lettres dans la console
-            console.log(searchWord);
+            //console.log(searchWord);
         });
 }
 
@@ -75,8 +85,15 @@ document.addEventListener('keydown', function (event) {
     let overlay = document.querySelector(`#overlay`);
     let popup = document.querySelector(`#popup`);
     let input = event.key.toUpperCase();
-    let result = searchWord.includes(input);
+    const upperCaseSpecialKeys = specialKeys.map(key => key.toUpperCase());
 
+    // Vérifier si la touche appuyée est une lettre simple ou une touche spéciale
+    if (regex1.test(input) || upperCaseSpecialKeys.includes(input)) {
+        //console.log("Touche ignorée:", input);
+        return; // Ignorer les touches non autorisées et les touches spéciales
+    }
+
+    let result = searchWord.includes(input);
 
     if (result) {
         // Augmenter le score pour une tentative correcte
@@ -89,14 +106,20 @@ document.addEventListener('keydown', function (event) {
         vi.forEach(function (element) {
             element.style.visibility = 'visible';
         });
-        compare.push(input);
-        console.log(compare);
-        console.log(searchWord);
+
+        // Ajouter la lettre correcte dans l'ordre correct
+        let index = searchWord.indexOf(input);
+        if (compare[index] === undefined) {
+            compare[index] = input;
+        }
+
+        //console.log(compare);
+        //console.log(searchWord);
 
         // Vérifier si le joueur a gagné
         if (arraysEqual(compare, searchWord)) {
             document.querySelector(`#title`).textContent = "BRAVO";
-            document.querySelector(`#text`).innerHTML = `Tu as obtenu un score de ${score.toFixed()}/100`;;
+            document.querySelector(`#text`).innerHTML = `Tu as obtenu un score de ${score.toFixed()}/100`;
             overlay.style.visibility = 'visible';
             popup.style.visibility = 'visible';
             document.querySelector(`#croix`).style.visibility = 'hidden';
@@ -106,7 +129,6 @@ document.addEventListener('keydown', function (event) {
             totalAttempts = 0;
             maxIncorrectAttempts = 7;
             incorrectAttempts = 0;
-            
         }
     } else {
         // Augmenter le nombre total de tentatives pour une tentative incorrecte
@@ -121,18 +143,18 @@ document.addEventListener('keydown', function (event) {
         wrongWord.textContent = wrong.join(', '); // Affiche les mots incorrects
         i++;
         img.src = `./img/phase${i}.png`;
-        console.log(i);
+        //console.log(i);
         if (i === 7) {
             document.querySelector(`#title`).textContent = "PERDU";
             document.querySelector(`#text`).innerHTML = `Dommage ! Le mot était "<strong>${searchWord.join('')}</strong>". La prochaine fois sera la bonne.`;
             overlay.style.visibility = 'visible';
             popup.style.visibility = 'visible';
             document.querySelector(`#croix`).style.visibility = 'hidden';
-            console.log("Perdu");
+            //console.log("Perdu");
         }
     }
 
-    console.log("letter =" + input);
+    //console.log("letter =" + input);
 });
 
 let reloadButton = document.querySelector('#replay');
@@ -145,11 +167,11 @@ reloadButton.addEventListener('click', function () {
 function calculateScore() {
     // Calculer le score en fonction du nombre de tentatives correctes
     let correctScore = (correctAttempts / searchWord.length) * maxScore;
-    console.log("Correct Score:", correctScore);
+    //console.log("Correct Score:", correctScore);
 
     // Calculer la pénalité en fonction du nombre de tentatives incorrectes
     let incorrectPenalty = (incorrectAttempts / maxIncorrectAttempts) * maxScore;
-    console.log("Incorrect Penalty:", incorrectPenalty);
+    //console.log("Incorrect Penalty:", incorrectPenalty);
 
     // Calculer le score final en soustrayant la pénalité du score basé sur les tentatives correctes
     score = correctScore - incorrectPenalty;
@@ -157,6 +179,6 @@ function calculateScore() {
     // Assurez-vous que le score ne dépasse pas le score maximum et ne soit pas négatif
     score = Math.max(0, Math.min(score, maxScore));
 
-    console.log("Final Score:", score);
+    //console.log("Final Score:", score);
     return score;
 }
